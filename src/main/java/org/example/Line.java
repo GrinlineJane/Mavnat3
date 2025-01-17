@@ -16,4 +16,12 @@ public class Line {
     public Point getP1() {
         return p1;
     }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "p1=" + p1.toString() +
+                ", p2=" + p2.toString() +
+                '}';
+    }
 }
