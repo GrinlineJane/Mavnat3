@@ -2,6 +2,9 @@ package org.example;
 
 import java.util.Random;
 
+import static org.example.Sorts.RadixSortForEndPoints;
+import static org.example.Sorts.RadixSortForStartPoints;
+
 public class Main {
 
     private static Random random = new Random();
@@ -29,7 +32,6 @@ public class Main {
       return new Line(startPoint, endPoint);
     }
 
-    //input
     public static Line[] generateLines(int linesNum){
         Line[] lines = new Line[linesNum];
         for (int i = 0; i< lines.length; i++) {
@@ -37,10 +39,6 @@ public class Main {
         }
         return lines;
     }
-
-    // miyun
-
-    // algo
 
     public static void findMaxLines(Line[] sortedByStart, Line[] sortedByEnd) {
         double furthestPoint = sortedByStart[0].getP1().getX();
@@ -82,10 +80,10 @@ public class Main {
 
         System.out.println("k = " + maxLinesK );
 
-        while (maxLinesNum > 0) {
+        while (maxLinesNum > 0 && currLineIndex >= 0) {
 
             if(sortedByStart[currLineIndex].getP2().getX() > maxLinesK ){
-                System.out.println(sortedByStart[kIndex].toString());
+                System.out.println(sortedByStart[currLineIndex].toString());
                 maxLinesNum--;
             }
 
@@ -94,11 +92,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("a");
-
-        for (int i = 0; i<10; i++) {
-            System.out.println(generateSevenDigitDouble());
-        }
         Line[] lines = generateLines(100);
+        Line[] sortedByStartPoint = RadixSortForStartPoints(lines);
+        Line[] sortedByEndPoint = RadixSortForEndPoints(lines);
+        findMaxLines(sortedByStartPoint, sortedByEndPoint);
     }
    }

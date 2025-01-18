@@ -17,6 +17,10 @@ public class Point {
         return y;
     }
 
+    public void setX(double value) {
+        this.x = value;
+    }
+
     @Override
     public String toString() {
         return "Point{" +
