@@ -7,7 +7,8 @@ public class Sorts {
 
 
     // .intValue() is used for type-casting,
-    // although it has no meaning since the value is already multiplied by the rounding factor.
+    // although it has no meaning since the value is already multiplied by the rounding factor,
+    // so it is a whole number.
     private static int GetValueAtDigit(Point point, int digit) {
         return (point.getX().intValue()/((int)Math.pow(10 , digit))) % 10;
     }
@@ -35,6 +36,7 @@ public class Sorts {
                 counter[GetValueAtDigit(sortedLines[j].getP1(), digit)]++;
             }
 
+            // counter started from 1 but the initial index is 0.
             if(digit != DIGITS - 1) {
                 counter[0]--;
             } else {
@@ -88,6 +90,7 @@ public class Sorts {
                 counter[GetValueAtDigit(sortedLines[j].getP2(), digit)]++;
             }
 
+            // counter started from 1 but the initial index is 0.
             if(digit != DIGITS - 1) {
                 counter[0]--;
             } else {
