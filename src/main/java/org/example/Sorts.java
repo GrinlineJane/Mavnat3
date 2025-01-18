@@ -7,7 +7,8 @@ public class Sorts {
 
 
     // .intValue() is used for type-casting,
-    // although it has no meaning since the value is already multiplied by the rounding factor.
+    // although it has no meaning since the value is already multiplied by the rounding factor,
+    // so it is a whole number.
     private static int GetValueAtDigit(Point point, int digit) {
         return (point.getX().intValue()/((int)Math.pow(10 , digit))) % 10;
     }
