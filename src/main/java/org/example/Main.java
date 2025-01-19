@@ -9,6 +9,13 @@ public class Main {
 
     private static Random random = new Random();
 
+    public static void main(String[] args) {
+        Line[] lines = generateLines(100);
+        Line[] sortedByStartPoint = RadixSortForStartPoints(lines);
+        Line[] sortedByEndPoint = RadixSortForEndPoints(lines);
+        findMaxLines(sortedByStartPoint, sortedByEndPoint);
+    }
+
     public static double generateSevenDigitDouble() {
         double num = random.nextDouble();
         num = (num * (9999.999 - 1000)) + 1000;
@@ -18,6 +25,7 @@ public class Main {
 
    public static Line generateLine(){
       double x1 = generateSevenDigitDouble();
+      //so that x2 will have an option to be bigger and to avoid a possible stuck overflow in the next while
       while (x1 == 9999.999){
           x1 = generateSevenDigitDouble();
       }
@@ -46,9 +54,9 @@ public class Main {
         int startPointsIndex = 1;
         int endPointsIndex = 0;
 
-        int currentLinesNum = 1; // because k is already at first point
+        int currentLinesNum = 1; // because startPointsIndex is already at first point
         int kIndex = 0;
-        int maxLinesNum = 0;
+        int maxLinesNum = 1; // because startPointsIndex is already at first point
 
         // iterates both arrays to find k.
         // O(2n) = O(n) worst case complexity.
@@ -71,7 +79,7 @@ public class Main {
 
             if(currentLinesNum > maxLinesNum){
                 maxLinesNum = currentLinesNum;
-                kIndex = startPointsIndex;
+                kIndex = startPointsIndex - 1;
             }
         }
 
@@ -79,6 +87,8 @@ public class Main {
         int currLineIndex = kIndex;
 
         System.out.println("k = " + maxLinesK );
+        System.out.println("maxLinesNum = " + maxLinesNum );
+
 
         while (maxLinesNum > 0 && currLineIndex >= 0) {
 
@@ -91,10 +101,4 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
-        Line[] lines = generateLines(100);
-        Line[] sortedByStartPoint = RadixSortForStartPoints(lines);
-        Line[] sortedByEndPoint = RadixSortForEndPoints(lines);
-        findMaxLines(sortedByStartPoint, sortedByEndPoint);
-    }
    }
