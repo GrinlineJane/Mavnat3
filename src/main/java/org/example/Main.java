@@ -67,10 +67,17 @@ public class Main {
 
             if(sortedByStart[startPointsIndex].getP1().getX() <=
                     sortedByEnd[endPointsIndex].getP2().getX()) {
+
                 if(sortedByStart[startPointsIndex].getP1().getX() > furthestPoint){
                     furthestPoint = sortedByStart[startPointsIndex].getP1().getX();
-                    startPointsIndex++;
                     currentLinesNum++;
+
+                    if(currentLinesNum > maxLinesNum){
+                        maxLinesNum = currentLinesNum;
+                        kIndex = startPointsIndex;
+                    }
+
+                    startPointsIndex++;
                 }
             } else {
                 if(sortedByEnd[endPointsIndex].getP2().getX() > furthestPoint){
@@ -78,11 +85,6 @@ public class Main {
                     endPointsIndex++;
                     currentLinesNum--;
                 }
-            }
-
-            if(currentLinesNum > maxLinesNum){
-                maxLinesNum = currentLinesNum;
-                kIndex = startPointsIndex - 1;
             }
         }
 
