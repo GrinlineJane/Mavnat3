@@ -31,7 +31,7 @@ public class Sorts {
             int[] counter = new int[RADIX_SORT_BASE];
             Line[] newSortedLines = new Line[sortedLines.length];
 
-            for (int i = 1; i < RADIX_SORT_BASE; i ++) {
+            for (int i = 0; i < RADIX_SORT_BASE; i ++) {
                 counter[i] = 0;
             }
 
