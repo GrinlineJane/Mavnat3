@@ -27,6 +27,7 @@ public class Sorts {
             );
         }
 
+        //preform counting sort
         for (int digit = 0; digit < DIGITS; digit++) {
             int[] counter = new int[RADIX_SORT_BASE];
             Line[] newSortedLines = new Line[sortedLines.length];
@@ -40,8 +41,9 @@ public class Sorts {
             }
 
             // indexes start from 0 while the count represent an amount,
-            // example: 9 at count would mean the final index is 8.
+            // example: 9 at count[0] would mean the final index of zeroes is 8.
             counter[0]--;
+
             for (int i = 1; i < RADIX_SORT_BASE; i++) {
                 counter[i] += counter[i-1];
             }
@@ -77,6 +79,7 @@ public class Sorts {
             );
         }
 
+        //preform counting sort
         for (int digit = 0; digit < DIGITS; digit++) {
             int[] counter = new int[RADIX_SORT_BASE];
             Line[] newSortedLines = new Line[sortedLines.length];
@@ -90,8 +93,9 @@ public class Sorts {
             }
 
             // indexes start from 0 while the count represent an amount,
-            // example: 9 at count would mean the final index is 8.
+            // example: 9 at count[0] would mean the final index of zeroes is 8.
             counter[0]--;
+
             for (int i = 1; i < RADIX_SORT_BASE; i++) {
                 counter[i] += counter[i-1];
             }
