@@ -28,7 +28,7 @@ public class Sorts {
             int[] counter = new int[RADIX_SORT_BASE];
             Line[] newSortedLines = new Line[sortedLines.length];
 
-            for (int i = 0; i < RADIX_SORT_BASE; i ++) {
+            for (int i = 1; i < RADIX_SORT_BASE; i ++) {
                 counter[i] = 0;
             }
 
@@ -36,12 +36,9 @@ public class Sorts {
                 counter[GetValueAtDigit(sortedLines[j].getP1(), digit)]++;
             }
 
-            if(digit != DIGITS - 1) {
-                counter[0]--;
-            } else {
-                counter[1]--;
-            }
-
+            // indexes start from 0 while the count represent an amount,
+            // example: 9 at count would mean the final index is 8.
+            counter[0]--;
             for (int i = 1; i < RADIX_SORT_BASE; i++) {
                 counter[i] += counter[i-1];
             }
@@ -89,12 +86,9 @@ public class Sorts {
                 counter[GetValueAtDigit(sortedLines[j].getP2(), digit)]++;
             }
 
-            if(digit != DIGITS - 1) {
-                counter[0]--;
-            } else {
-                counter[1]--;
-            }
-
+            // indexes start from 0 while the count represent an amount,
+            // example: 9 at count would mean the final index is 8.
+            counter[0]--;
             for (int i = 1; i < RADIX_SORT_BASE; i++) {
                 counter[i] += counter[i-1];
             }
