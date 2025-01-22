@@ -3,6 +3,7 @@
 
 package org.example;
 
+import java.util.Objects;
 import java.util.Random;
 
 import static org.example.Sorts.RadixSortForEndPoints;
@@ -52,43 +53,46 @@ public class Main {
     }
 
     public static void findMaxLines(Line[] sortedByStart, Line[] sortedByEnd) {
-        double furthestPoint = sortedByStart[0].getP1().getX();
+        SortedLine[] allLines = new SortedLine[sortedByStart.length * 2];
 
-        int startPointsIndex = 1;
-        int endPointsIndex = 0;
+        int p = 0;
+        int q = 0;
+
+        for (int i = 0; i< sortedByStart.length * 2; i++) {
+            if (sortedByStart[p].getP1().getX() <= sortedByEnd[q].getP2().getX()) {
+                allLines[i] = new SortedLine(sortedByStart[p], "start");
+
+                if (p + 1 < sortedByStart.length) {
+                    p++;
+                }
+            } else {
+                allLines[i] = new SortedLine(sortedByEnd[q], "end");
+                if (q + 1 < sortedByEnd.length) {
+                    q++;
+                }
+            }
+        }
 
         int currentLinesNum = 1; // because startPointsIndex is already at first point
         int kIndex = 0;
         int maxLinesNum = 1; // because startPointsIndex is already at first point
 
-        // iterates both arrays to find k.
+        // iterates both all lines twice to find k.
         // O(2n) = O(n) worst case complexity.
-        while (startPointsIndex < sortedByStart.length){
+        for(int j=0; j<allLines.length; j++) {
+            if(Objects.equals(allLines[j].getType(), "start")) {
+                currentLinesNum++;
 
-            if(sortedByStart[startPointsIndex].getP1().getX() <=
-                    sortedByEnd[endPointsIndex].getP2().getX()) {
-
-                if(sortedByStart[startPointsIndex].getP1().getX() > furthestPoint){
-                    furthestPoint = sortedByStart[startPointsIndex].getP1().getX();
-                    currentLinesNum++;
-
-                    if(currentLinesNum > maxLinesNum){
-                        maxLinesNum = currentLinesNum;
-                        kIndex = startPointsIndex;
-                    }
-
-                    startPointsIndex++;
+                if(currentLinesNum > maxLinesNum){
+                    maxLinesNum = currentLinesNum;
+                    kIndex = j;
                 }
             } else {
-                if(sortedByEnd[endPointsIndex].getP2().getX() > furthestPoint){
-                    furthestPoint = sortedByEnd[endPointsIndex].getP2().getX();
-                    endPointsIndex++;
-                    currentLinesNum--;
-                }
+                currentLinesNum --;
             }
         }
 
-        double maxLinesK  = sortedByStart[kIndex].getP1().getX();
+        double maxLinesK  = allLines[kIndex].getP1().getX();
         int currLineIndex = kIndex;
 
         System.out.println("k = " + maxLinesK );
@@ -96,9 +100,9 @@ public class Main {
 
 
         while (maxLinesNum > 0 && currLineIndex >= 0) {
-
-            if(sortedByStart[currLineIndex].getP2().getX() > maxLinesK ){
-                System.out.println(sortedByStart[currLineIndex].toString());
+            SortedLine currLine = allLines[currLineIndex];
+            if(Objects.equals(currLine.getType(), "start") && currLine.getP2().getX() > maxLinesK ){
+                System.out.println(allLines[currLineIndex].toString());
                 maxLinesNum--;
             }
 

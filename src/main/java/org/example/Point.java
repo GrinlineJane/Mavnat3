@@ -24,6 +24,10 @@ public class Point {
         this.x = value;
     }
 
+    public void setY(double value) {
+        this.y = value;
+    }
+
     @Override
     public String toString() {
         return "Point{" +
