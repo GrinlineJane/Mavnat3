@@ -1,12 +1,12 @@
 // אור גלבוע 324188754
 // ורברה גריניוב 338055866
 
-package org.example;
+package homework3;
 
 public class Sorts {
     static int RADIX_SORT_BASE = 10;
     static int DIGITS = 7;
-    static int MULTIPLYING_FACTOR = 1000;
+    static int ROUNDING_FACTOR = 1000;
 
 
     // .intValue() is used for type-casting,
@@ -23,7 +23,7 @@ public class Sorts {
             sortedLines[i] = lines[i];
 
             sortedLines[i].getP1().setX(
-                    lines[i].getP1().getX() * MULTIPLYING_FACTOR
+                    lines[i].getP1().getX() * ROUNDING_FACTOR
             );
         }
 
@@ -61,7 +61,7 @@ public class Sorts {
 
         for (int i = 0; i < sortedLines.length; i ++) {
             sortedLines[i].getP1().setX(
-                    sortedLines[i].getP1().getX() / MULTIPLYING_FACTOR
+                    sortedLines[i].getP1().getX() / ROUNDING_FACTOR
             );
         }
 
@@ -75,7 +75,7 @@ public class Sorts {
             sortedLines[i] = lines[i];
 
             sortedLines[i].getP2().setX(
-                    lines[i].getP2().getX() * MULTIPLYING_FACTOR
+                    lines[i].getP2().getX() * ROUNDING_FACTOR
             );
         }
 
@@ -113,7 +113,7 @@ public class Sorts {
 
         for (int i = 0; i < sortedLines.length; i ++) {
             sortedLines[i].getP2().setX(
-                    sortedLines[i].getP2().getX() / MULTIPLYING_FACTOR
+                    sortedLines[i].getP2().getX() / ROUNDING_FACTOR
             );
         }
 
