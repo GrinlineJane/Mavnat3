@@ -52,8 +52,6 @@ public class Main {
     }
 
     public static void findMaxLines(Line[] sortedByStart, Line[] sortedByEnd) {
-        double furthestPoint = sortedByStart[0].getP1().getX();
-
         int startPointsIndex = 1;
         int endPointsIndex = 0;
 
@@ -64,27 +62,22 @@ public class Main {
         // iterates both arrays to find k.
         // O(2n) = O(n) worst case complexity.
         while (startPointsIndex < sortedByStart.length){
+            Point currentStartPoint = sortedByStart[startPointsIndex].getP1();
+            Point currentEndPoint = sortedByEnd[endPointsIndex].getP2();
 
-            if(sortedByStart[startPointsIndex].getP1().getX() <=
-                    sortedByEnd[endPointsIndex].getP2().getX()) {
-
-                if(sortedByStart[startPointsIndex].getP1().getX() > furthestPoint){
-                    furthestPoint = sortedByStart[startPointsIndex].getP1().getX();
-                    currentLinesNum++;
-
-                    if(currentLinesNum > maxLinesNum){
-                        maxLinesNum = currentLinesNum;
-                        kIndex = startPointsIndex;
-                    }
-
-                    startPointsIndex++;
-                }
+            // any end point cant be placed before the first start point
+            if(currentEndPoint.getX() <= currentStartPoint.getX()) {
+                endPointsIndex++;
+                currentLinesNum--;
             } else {
-                if(sortedByEnd[endPointsIndex].getP2().getX() > furthestPoint){
-                    furthestPoint = sortedByEnd[endPointsIndex].getP2().getX();
-                    endPointsIndex++;
-                    currentLinesNum--;
+                currentLinesNum++;
+
+                if(currentLinesNum > maxLinesNum){
+                    maxLinesNum = currentLinesNum;
+                    kIndex = startPointsIndex;
                 }
+
+                startPointsIndex++;
             }
         }
 
