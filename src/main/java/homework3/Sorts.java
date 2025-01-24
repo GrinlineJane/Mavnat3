@@ -1,7 +1,7 @@
 // אור גלבוע 324188754
 // ורברה גריניוב 338055866
 
-package org.example;
+package homework3;
 
 public class Sorts {
     static int RADIX_SORT_BASE = 10;

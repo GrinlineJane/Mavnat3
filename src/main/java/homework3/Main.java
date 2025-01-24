@@ -1,12 +1,12 @@
 // אור גלבוע 324188754
 // ורברה גריניוב 338055866
 
-package org.example;
+package homework3;
 
 import java.util.Random;
 
-import static org.example.Sorts.RadixSortForEndPoints;
-import static org.example.Sorts.RadixSortForStartPoints;
+import static homework3.Sorts.RadixSortForEndPoints;
+import static homework3.Sorts.RadixSortForStartPoints;
 
 public class Main {
 
