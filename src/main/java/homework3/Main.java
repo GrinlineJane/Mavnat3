@@ -13,7 +13,7 @@ public class Main {
     private static Random random = new Random();
 
     public static void main(String[] args) {
-        Line[] lines =  generateLines(100);
+        Line[] lines = generateLines(100);
         Line[] sortedByStartPoint = RadixSortForStartPoints(lines);
         Line[] sortedByEndPoint = RadixSortForEndPoints(lines);
         findMaxLines(sortedByStartPoint, sortedByEndPoint);
@@ -29,19 +29,14 @@ public class Main {
    public static Line generateLine(){
       double x1 = generateSevenDigitDouble();
 
-      //so that x2 will have an option to be bigger and to avoid a possible stack overflow in the next while
-      while (x1 == 9999.999){
-          x1 = generateSevenDigitDouble();
-      }
-
       double x2 = generateSevenDigitDouble();
 
-      while (x2 <= x1){
-          x2 = generateSevenDigitDouble();
-      }
+       while (x1 == x2){
+           x2 = generateSevenDigitDouble();
+       }
 
-      Point startPoint = new Point(x1, generateSevenDigitDouble());
-      Point endPoint = new Point(x2, generateSevenDigitDouble());
+      Point startPoint = new Point(Math.min(x1, x2), generateSevenDigitDouble());
+      Point endPoint = new Point(Math.max(x1, x2), generateSevenDigitDouble());
       return new Line(startPoint, endPoint);
     }
 
