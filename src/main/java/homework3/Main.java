@@ -66,13 +66,13 @@ public class Main {
             Point currentEndPoint = sortedByEnd[endPointsIndex].getP2();
 
             // any end point cant be placed before the first start point
-            if(currentEndPoint.getX() <= currentStartPoint.getX()) {
+            if(currentEndPoint.getX() < currentStartPoint.getX()) {
                 endPointsIndex++;
                 currentLinesNum--;
             } else {
                 currentLinesNum++;
 
-                if(currentLinesNum > maxLinesNum){
+                if(currentLinesNum >= maxLinesNum){
                     maxLinesNum = currentLinesNum;
                     kIndex = startPointsIndex;
                 }
@@ -90,7 +90,7 @@ public class Main {
 
         while (maxLinesNum > 0 && currLineIndex >= 0) {
 
-            if(sortedByStart[currLineIndex].getP2().getX() > maxLinesK ){
+            if(sortedByStart[currLineIndex].getP2().getX() >= maxLinesK ){
                 System.out.println(sortedByStart[currLineIndex].toString());
                 maxLinesNum--;
             }
